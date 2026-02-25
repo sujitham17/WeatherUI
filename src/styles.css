@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1b5e20, #66bb6a);
+}
+
+.weather-card {
+  width: 900px;
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.weather-card h1 {
+  color: #1b5e20;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  margin-top: 40px;
+  color: #2e7d32;
+}
+
+.controls {
+  margin: 20px 0;
+}
+
+input {
+  padding: 10px;
+  width: 55%;
+  border-radius: 6px;
+  border: 1px solid #66bb6a;
+}
+
+button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  background: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1b5e20;
+}
+
+.output {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  gap: 15px;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 25px;
+  justify-content: center;
+}
+
+.box {
+  flex: 1;
+  min-width: 180px;
+  background: #e8f5e9;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.box h3 {
+  color: #2e7d32;
+  margin-bottom: 8px;
+}
