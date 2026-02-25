@@ -2,17 +2,17 @@ import { useState } from "react";
 import axios from "axios";
 
 const weatherMap = {
-  0: "Clear Sky ",
-  1: "Sunny ",
-  2: "Partly Cloudy ",
-  3: "Heavy Rain ",
-  45: "Fog ",
+  0: "Clear Sky",
+  1: "Sunny",
+  2: "Partly Cloudy",
+  3: "Heavy Rain",
+  45: "Fog",
   48: "Mist",
-  51: "Light Drizzle ",
-  61: "Rain ",
-  71: "Snow ",
-  80: "Rain Showers ",
-  95: "Thunderstorm "
+  51: "Light Drizzle",
+  61: "Rain",
+  71: "Snow",
+  80: "Rain Showers",
+  95: "Thunderstorm"
 };
 
 function Weather() {
@@ -27,7 +27,7 @@ function Weather() {
 
     try {
       const res = await axios.get(
-        'https://archive-api.open-meteo.com/v1/archive?latitude=28.61&longitude=77.23&start_date=${date}&end_date=${date}&hourly=temperature_2m,relative_humidity_2m,surface_pressure,weather_code'
+        `https://archive-api.open-meteo.com/v1/archive?latitude=28.61&longitude=77.23&start_date=${date}&end_date=${date}&hourly=temperature_2m,relative_humidity_2m,surface_pressure,weather_code&timezone=Asia/Kolkata`
       );
 
       if (!res.data.hourly) {
@@ -46,7 +46,7 @@ function Weather() {
 
     try {
       const res = await axios.get(
-        'https://archive-api.open-meteo.com/v1/archive?latitude=28.61&longitude=77.23&start_date=${year}-01-01&end_date=${year}-12-31&daily=temperature_2m_max,temperature_2m_min'
+        `https://archive-api.open-meteo.com/v1/archive?latitude=28.61&longitude=77.23&start_date=${year}-01-01&end_date=${year}-12-31&daily=temperature_2m_max,temperature_2m_min&timezone=Asia/Kolkata`
       );
 
       const maxTemps = res.data.daily.temperature_2m_max;
@@ -65,7 +65,13 @@ function Weather() {
         const values = monthData[m].sort((a, b) => a - b);
         const min = values[0];
         const max = values[values.length - 1];
-        const median = values.length % 2 === 0 ? (values[values.length / 2 - 1] + values[values.length / 2]) / 2 : values[Math.floor(values.length / 2)];
+        const median =
+          values.length % 2 === 0
+            ? (values[values.length / 2 - 1] +
+                values[values.length / 2]) /
+              2
+            : values[Math.floor(values.length / 2)];
+
         return {
           month: new Date(0, m).toLocaleString("default", { month: "short" }),
           min: min.toFixed(1),
@@ -119,7 +125,7 @@ function Weather() {
       <div className="controls">
         <input
           type="number"
-          placeholder="Enter year "
+          placeholder="Enter year"
           value={year}
           onChange={(e) => setYear(e.target.value)}
         />
